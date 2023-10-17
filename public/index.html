@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8" />
+	<meta name="author" content="Jacob Bowers" />
+	<meta name="description" content="A Sketchy Bio of myself!" />
+
+	<title>Jacob Bowers' Homepage</title>
+	
+	<link rel="stylesheet" href="./css/style.css">
+		
+		
+	<script>
+		function validate_form()
+		{
+			let name = document.forms["my_form"]["name"].value;
+			let email = document.forms["my_form"]["email"].value;
+			let phone = document.forms["my_form"]["phone"].value;
+			var phone_check = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+			var email_check = /^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+			
+			if (name == "") 
+			{
+				alert("A name must be entered.");
+				return false;	
+			}
+			else if (!phone.match(phone_check))
+			{
+				alert("A phone number must be entered, (Example: 789-456-1230)");
+				return false;		
+			}
+			else if (!email.match(email_check))
+			{
+				alert("An email must be entered, (Example: John.Smith@aol.com.)");
+				return false;	
+			}
+			else	
+			{
+				document.getElementById("thanks").innerHTML = "Thank you for your time!";
+				
+				const data = { name, email}; 
+				const options = {
+					method: 'POST',
+					headers: 
+					{
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(data)
+				};
+				fetch('/api', options);
+
+
+				return false;
+			}
+		}
+
+		//Global Vars
+		var shapes = 0;
+		array_x = [];
+		array_y = [];
+		stopped = false;
+		
+		function showCoords (event)
+		{
+			if (shapes < 5) 
+			{
+			var ctx; 
+			ctx = document.getElementById("canvas").getContext("2d");
+			
+			var rect = canvas.getBoundingClientRect();
+			scaleX = canvas.width / rect.width;
+			scaleY = canvas.height / rect.height;
+			
+			var x = (event.clientX - rect.left) * scaleX;
+			var y = (event.clientY - rect.top) * scaleY;
+			
+			array_x.push(x);
+			array_y.push(y);
+			
+			console.log(array_x[shapes]);
+			console.log(array_y[shapes]);
+			shapes++;
+			}
+	
+		}
+		stop == false;
+		function stop() {
+			
+			const context = canvas.getContext('2d');
+			context.clearRect(0, 0, canvas.width, canvas.height);
+			shapes = 0;
+			array_x.length = 0;
+			array_y.length = 0
+		
+		}
+		
+		function play() {
+				
+				document.getElementById("text").innerHTML = "Please click on up to 5 arbitrary spots within this box, and see my shape transformation magic."
+				document.getElementById("canvas").style.visibility = "visible"; 
+				
+				const context = canvas.getContext('2d');
+				context.clearRect(0, 0, canvas.width, canvas.height);
+
+				var ctx; 
+				ctx = document.getElementById("canvas").getContext("2d");
+					
+		
+					
+				for (let i = 0; i <= shapes; i++)
+				{
+				
+					var x = array_x[i];
+					console.log(x);
+					var y = array_y[i];
+					
+					
+					var colors = ["aquamarine","aqua","yellowgreen","azure","coral",
+					"darkblue","darkgreen","darksalmon","goldenrod","seagreen","seashell","turquoise"];
+					var random_color = colors[Math.floor((Math.random()) * colors.length)];
+					ctx.fillStyle = random_color;
+					
+					var shape_type = ["circle","rectangle","square"];
+					var random_shape_type = shape_type[Math.floor((Math.random()) * shape_type.length)];
+					
+					var min = 20;
+					var max = 175;
+					
+					var size_x = Math.random() * (max - min) + min;
+					var size_y = Math.random() * (max - min) + min;
+		
+						
+					switch (random_shape_type) {
+						case "rectangle":
+							ctx.fillRect(x-(size_x/2),y-(size_y/2),size_x,size_y);
+							ctx.lineWidth = 3;
+		
+							break;
+						case "square":
+							ctx.fillRect(x-(size_x/2),y-(size_y/2),size_x,size_x);
+							ctx.lineWidth = 3;
+							
+							break;
+						case "circle":
+							ctx.beginPath();
+							ctx.arc(x,y, size_x, 0, 2 * Math.PI);
+					
+							lineWidth = 0;
+							ctx.closePath();
+							ctx.fill();
+							break;
+					}
+				}
+				
+				setTimeout(play, 1000);	
+								
+		}
+	
+	</script>
+			
+	
+</head>
+
+<body>
+
+	<noscript>
+		<p>This web page uses JavaScript. For proper results,you must use a web browser with JavaScript enabled.</p>
+	</noscript>
+
+<div class="sidenav">
+		<a href="#home">Home</a>
+		<a href="#bio">Biography</a>
+		<a href="#philo">Philosophy</a>
+		<a href="#support">Support</a>	
+		<a href="#game">Games</a>	
+</div>
+
+
+<div class="main">
+
+	<header>
+		<a id="home"></a>
+		<h1 class = "yellowgreen-background"> Jacob Bowers</h1>
+		<h2>CS Student, Eagle Scout, Philanthropist</h2>	
+	</header>
+	
+<article>	
+	<section> 
+		<p>
+			Welcome, one and all to my humble little website. <br>
+			If you're just visting please take your time and enjoy what we have to offer. <br>
+			If you already know what you're looking for, please use the assocated "dive" bar. <br>
+			<br>
+			Have a great trip! <br>
+		</p>
+	</section>
+	
+	<a id="bio"></a>
+	<section> <h3 class = "yellowgreen-background"> A Short Bio: </h3>
+		
+		<p> 
+			My name is Jacob Robert Bowers; <br>
+			I was born on April 7th, 2001, in the small town of Aurora, Colorado. <br>
+			Due to my father's occupation with DOD (Department of Defense) <br> 
+			my family moved around often, finally settling in Mascoutah, IL. <br> 
+			I am the third generation from my family to attend Southern University Illinois Carbondale. <br> 	
+		</p>
+	</section>
+	
+	<section> <h3> Future Plans! </h3>	
+		<ul>
+			<li> 
+				Aspirations Include:
+				<ul>
+					<li> Graduate as a CS Bachelor with a 3.5 GPA. </li>
+					<li> Continue my education towards a Masters and possibly a Doctorate. </li>
+					<li> Join the United States Space Force Officer Corp. </li> 
+					<li> Build a business. </li>
+					<li> And if I have the time, try to take over the world. ;) </li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+
+	<section>
+		<table>
+			<caption> Daily Routine </caption>
+			
+			<thead>
+				<tr>
+					<th>Time</th>
+					<th>Activity</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr><td>6:30</td><td>Wake-Up!</td></tr>
+				<tr><td>6:30-8:00</td><td>Exercise and Breakfast!</td></tr>
+				<tr><td>8:00-9:50</td><td>First Summer Course Study Block!</td></tr>
+				<tr><td>9:50-10:50</td><td>Statistics Zoom meeting!</td></tr>
+				<tr><td>10:50-12:00</td><td>Second Summer Course Study Block!</td></tr>
+				<tr><td>12:00-12:30</td><td>Lunch!</td></tr>
+				<tr><td>12:30-13:30</td><td>Mid-day Crash!</td></tr>
+				<tr><td>13:30-15:00</td><td>Third Summer Course Study Block!</td></tr>
+				<tr><td>15:00-17:00</td><td>Optional Fourth Summer Course Study Block! || House Keeping</td></tr>
+				<tr><td>17:00-18:00</td><td>Dinner!</td></tr>
+				<tr><td>18:00-22:00</td><td>Free Time!</td></tr>
+			<tbody>
+		</table>
+	</section>
+
+
+	<a id="philo"></a>
+	<section> <h3 class="yellowgreen-background"> Quotes to live by: </h3>
+		<blockquote>
+			<em> If everyone is thinking alike, </em><strong> then somebody isn't thinking! </strong> 
+		</blockquote>	
+		<pre>     - Gen.  George  S.  Patton </pre>	
+	</section>
+	
+	<section> <h3> An Amazing Speech by the 26th President: </h3>
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/A311CnTjfos" 
+		title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+		allowfullscreen></iframe>
+	</section>
+	
+	<br>
+	
+
+</article>
+</div>
+
+
+
+<div class ="main">
+	
+	<a id="support"></a>
+	
+	<form name="my_form" 
+	onsubmit="return validate_form()" 
+	method= "POST"
+	action = "http://localhost:8080/#support"
+	>
+	<h3 class = "yellowgreen-background"> Please don't hesitate to contact us: </h3>
+		Name: <input name="name" type="text" placeholder="John Smith" size="24">
+		Address: <input name="address" type="text"  placeholder="1600 Pennsylvania Avenue" size="34">
+		Phone: <input name="phone" type="tel"  placeholder="555-444-2222" size="10">
+		<br><br> Email: <input name="email" type="text"  placeholder="JohnSmith@gmail.com" size="40"> 
+		Favorate Programming Language: <input name="language"  placeholder="C++" type="text" size="20">
+		<br><br> Comments: <input name="comments" type="text" placeholder="My favorate thing about this website is..." size="102">
+		<br><br> <input type="submit" value="Submit">
+		
+	</form>
+	
+	<br><h1 class = "yellowgreen-background" id="thanks"></h1><br>	
+		
+		
+		
+
+	<section>
+		<a id="game"></a>
+		<h3 class = "yellowgreen-background"> Little Shape Transformation Game! </h3>
+		
+		<p> 
+			<button onclick="play()">Play</button> 
+			<button onclick="stop()">Stop Play</button> 	
+		</p>
+			<p id="text"></p>
+			
+		
+			
+		<canvas id="canvas" width="1200" height="200" style = "background-color: CadetBlue; border: 10px solid"; onclick="showCoords(event)">
+			Sorry - This page uses <code>canvas</code> and your browser does not support it.
+		</canvas>
+	
+	</section>	
+	
+</div>
+
+
+<div class ="right">
+	<aside>	
+	<h2 class = "yellowgreen-background"> A picture of yours truly! </h2>
+	</aside>
+	<img src="./img/Bowers_Pic_One.jpg" alt="Jacob_Bower_Sitting_Smiling"
+	width="577" height="866">
+</div>
+
+
+
+
+<div class ="table">
+	<br>
+	<div class="caption"> Two adequate pictures of good ol' Mascoutah! </div>
+	<div class= "row">
+		<span>	
+			<a href="https://www.mascoutah.org">
+				<img src="./img/Mascoutah.jpg"  alt="MascoutahPic" 
+				width="792" height="317"> 
+			</a>
+		</span>
+		
+		<span>
+		<a href="https://aboutstlouis.com/local/communities/mascoutah-illinois">
+			<img src="./img/Mascoutah_City_Hall.jpg" alt="MascoutahHall" 
+			width="500" height="332"> 
+		</a>
+		<span>
+	
+</div>
+<br>
+
+
+</body>
+
+</html>

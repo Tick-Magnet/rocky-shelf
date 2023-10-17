@@ -1,0 +1,129 @@
+/* Jacob Bowers */
+html {
+	height: 100%
+	background-repeat:no-repeat;
+	background-image: linear-gradient(Turquoise, MediumSeaGreen, Blue)
+}
+
+canvas {
+	visibility: hidden;
+}
+
+
+h1 {
+	font-style: oblique;
+	font-family: Impact;
+	text-align: center;
+}
+h2 {
+	font-style: italic;
+	text-align: center;
+}
+
+.table { 
+	display: table;
+	boarder-spacing: 60px;
+}
+
+.caption {
+	font-size: 26px; 
+	font-style: italic;
+	font-family: Impact;
+	text-align: right;
+	
+}
+.row {display: table-row}
+.row > *{
+	display: table-cell;
+	text-align: center;
+}
+
+div.right {
+	position: absolute;
+	text-align: center;
+	top: 160px;
+	right: 60px;
+	
+}
+
+
+
+caption {font-size: 26px; font-style: italic; font-family: Impact;}
+
+table, th, td {
+	border: 4px solid black;
+	border-spacing: 2px;
+}
+
+thead th {
+	background-color: CadetBlue;
+	text-align: center;
+	vertical-align: bottom;
+}
+
+td { 
+	background-color: YellowGreen;
+	text-align: center;
+}
+
+blockquote {font-family: Courier New;}
+small {color: SeaGreen;}
+
+
+.main {
+  color: black;
+  margin-left: 160px; /* Same as the width of the sidenav */
+  padding: 0px 10px;
+}
+
+
+.yellowgreen-background {background-color: YellowGreen;}
+
+html {scroll-behavior: smooth;}
+
+
+
+
+/* The sidebar menu */
+.sidenav {
+  width: 150px;
+  padding: 22px 0;
+  
+  position: fixed;
+  z-index: 1;
+  
+  top: 22px;
+  left: 10px;
+  background-color: YellowGreen;
+  overflow-x: hidden;
+ 
+  border: 4px solid black;
+}
+
+/* The navigation menu links */
+.sidenav a {
+
+	
+  background-color: SlateGrey;
+  padding: 6px 8px 6px 16px;
+  text-decoration: overline;
+  text-align: center;
+  
+  font-size: 25px;
+  font-style: oblique; 
+  font-family: Impact;	
+	
+  color: black;
+  display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: Yellow;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
